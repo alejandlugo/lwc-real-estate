@@ -3,6 +3,8 @@
 #
 
 package.xml
+**/appMenus/**
+**/staticresources/**
 
 # LWC configuration files
 **/jsconfig.json
