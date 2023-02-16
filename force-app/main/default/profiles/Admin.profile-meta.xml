@@ -8,6 +8,11 @@
     <custom>false</custom>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Real_Estate_Property__c.Amenities__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Real_Estate_Property__c.Furnished__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -38,6 +43,10 @@
         <object>Real_Estate_Property__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
+    <tabVisibilities>
+        <tab>Real_Estate_Explorer</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
     <tabVisibilities>
         <tab>Real_Estate_Property__c</tab>
         <visibility>DefaultOn</visibility>

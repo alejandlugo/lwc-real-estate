@@ -14,6 +14,7 @@
     <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
     <label>Real Estate Hub</label>
     <navType>Standard</navType>
+    <tabs>Real_Estate_Explorer</tabs>
     <tabs>Real_Estate_Property__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Real_Estate_Hub_UtilityBar</utilityBar>
