@@ -3,9 +3,9 @@
     <fullName>Price__c</fullName>
     <externalId>false</externalId>
     <label>Price</label>
-    <precision>10</precision>
+    <precision>8</precision>
     <required>true</required>
-    <scale>2</scale>
+    <scale>0</scale>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Currency</type>
