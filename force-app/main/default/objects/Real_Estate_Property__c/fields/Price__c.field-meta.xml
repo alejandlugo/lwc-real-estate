@@ -3,11 +3,10 @@
     <fullName>Price__c</fullName>
     <externalId>false</externalId>
     <label>Price</label>
-    <precision>8</precision>
+    <precision>10</precision>
     <required>true</required>
-    <scale>0</scale>
+    <scale>2</scale>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
-    <type>Number</type>
-    <unique>false</unique>
+    <type>Currency</type>
 </CustomField>
