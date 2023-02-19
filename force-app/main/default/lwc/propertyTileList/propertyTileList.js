@@ -5,7 +5,9 @@ export default class PropertyTileList extends LightningElement {
 
     realEstateProperties;
 
-    @wire(getRealEstateProperties)
+    filters = {}
+
+    @wire(getRealEstateProperties, {filters: '$filters'})
     realEstateHandler({data,error}){
         if(data){
             console.log(data)
