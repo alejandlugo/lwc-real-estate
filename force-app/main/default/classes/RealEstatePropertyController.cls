@@ -40,14 +40,14 @@ public with sharing class RealEstatePropertyController {
                     criteria.add('Price__c <= :maxPrice');
                     System.debug(criteria);
                 }
-                if(filters.types != null){
+                if(filters.types != null && filters.types.size() > 0){
                     System.debug('Hay types');
                     criteria.add('Type__c IN :types');
                     System.debug(criteria);
                 }
                 if(String.isNotEmpty(saleType)){
                     System.debug('Hay saleType');
-                    criteria.add('saleType = :saleType');
+                    criteria.add('Sale_Type__c = :saleType');
                     System.debug(criteria);
                 }
                 if(criteria.size() > 0){
