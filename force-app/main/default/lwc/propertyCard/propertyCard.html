@@ -1,21 +1,26 @@
 <template>
     <lightning-card title={nameField} icon-name="custom:custom107">
-        <div class="slds-m-horizontal_medium">
-            <img src={pictureField} alt="Propery picture"/>
-            <lightning-record-view-form onload={handleRecordLoaded} record-id={recordId} object-api-name="Real_Estate_Property__c" density="compact">
-                <lightning-output-field field-name={typeField}></lightning-output-field>
-                <lightning-output-field field-name={squareFeetField}></lightning-output-field>
-                <lightning-output-field field-name={saleTypeField}></lightning-output-field>
-                <lightning-output-field field-name={priceField}></lightning-output-field>
-                <section>Other Features</section>
-                <lightning-output-field field-name={bedroomsField}></lightning-output-field>
-                <lightning-output-field field-name={bathroomsField}></lightning-output-field>
-                <lightning-output-field field-name={floorsField}></lightning-output-field>
-                <lightning-output-field field-name={amenitiesField}></lightning-output-field>
-                <lightning-output-field field-name={garagesField}></lightning-output-field>
-                <section>Location</section>
-                <lightning-output-field field-name={locationField}></lightning-output-field>
-            </lightning-record-view-form> 
-        </div>
+        <template lwc:if={recordId}>
+            <div class="slds-m-horizontal_medium">
+                <img src={pictureField} alt="Propery picture"/>
+                <lightning-record-view-form onload={handleRecordLoaded} record-id={recordId} object-api-name="Real_Estate_Property__c" density="compact">
+                    <lightning-output-field field-name={typeField}></lightning-output-field>
+                    <lightning-output-field field-name={squareFeetField}></lightning-output-field>
+                    <lightning-output-field field-name={saleTypeField}></lightning-output-field>
+                    <lightning-output-field field-name={priceField}></lightning-output-field>
+                    <section>Other Features</section>
+                    <lightning-output-field field-name={bedroomsField}></lightning-output-field>
+                    <lightning-output-field field-name={bathroomsField}></lightning-output-field>
+                    <lightning-output-field field-name={floorsField}></lightning-output-field>
+                    <lightning-output-field field-name={amenitiesField}></lightning-output-field>
+                    <lightning-output-field field-name={garagesField}></lightning-output-field>
+                    <section>Location</section>
+                    <lightning-output-field field-name={locationField}></lightning-output-field>
+                </lightning-record-view-form> 
+            </div>
+        </template>
+        <template lwc:else>
+                
+        </template>
     </lightning-card>
 </template>

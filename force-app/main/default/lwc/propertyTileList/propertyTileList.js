@@ -3,12 +3,14 @@ import getRealEstateProperties from '@salesforce/apex/RealEstatePropertyControll
 
 //Lightning Message Service
 import {
+    publish,
     subscribe,
     unsubscribe,
     APPLICATION_SCOPE,
     MessageContext,
 } from 'lightning/messageService';
 import PROPERTY_FILTERED_MESSAGE from '@salesforce/messageChannel/PropertyFiltered__c';
+import PROPERTY_SELECTED_MESSAGE from '@salesforce/messageChannel/PropertySelected__c';
 
 export default class PropertyTileList extends LightningElement {
 
@@ -30,6 +32,17 @@ export default class PropertyTileList extends LightningElement {
     @wire(MessageContext)
     messageContext;
 
+    @wire(getRealEstateProperties, {filters: '$filters'})
+    realEstateHandler({data,error}){
+        if(data){
+            console.log(data)
+            this.realEstateProperties = data
+        }
+        if(error){
+            console.error(error)
+        }
+    }
+
     /* Subscribe to LMS channel */
     subscribeToMessageChannel() {
         if (!this.subscription) {
@@ -50,19 +63,14 @@ export default class PropertyTileList extends LightningElement {
 
     /* Handler for message received by propertyFilter */
     handleMessage(message) {
-        console.log('received lms')
-        console.log(message)
         this.filters = {...message.filters}
     }
 
-    @wire(getRealEstateProperties, {filters: '$filters'})
-    realEstateHandler({data,error}){
-        if(data){
-            console.log(data)
-            this.realEstateProperties = data
-        }
-        if(error){
-            console.error(error)
-        }
+    /* Handler for property selected */
+    handlePropertySelected(event){
+        console.log('selected car id ', event.detail)
+        publish(this.messageContext, PROPERTY_SELECTED_MESSAGE, {propertyId: event.detail})
     }
+
+    
 }

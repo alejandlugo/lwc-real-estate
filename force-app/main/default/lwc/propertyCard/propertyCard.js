@@ -1,5 +1,14 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, wire } from 'lwc';
 import { getFieldValue } from 'lightning/uiRecordApi';
+
+//Lightning Message Service
+import {
+    subscribe,
+    unsubscribe,
+    APPLICATION_SCOPE,
+    MessageContext,
+} from 'lightning/messageService';
+import PROPERTY_SELECTED_MESSAGE from '@salesforce/messageChannel/PropertySelected__c';
 
 // Real Estate Property Schema
 import NAME_FIELD from '@salesforce/schema/Real_Estate_Property__c.Name';
@@ -17,7 +26,9 @@ import TYPE_FIELD from '@salesforce/schema/Real_Estate_Property__c.Type__c';
 import SALE_TYPE_FIELD from '@salesforce/schema/Real_Estate_Property__c.Sale_Type__c';
 export default class PropertyCard extends LightningElement {
     
-    recordId = 'a008N000001WpyfQAC';
+    recordId
+
+    subscription
 
     nameField;
     pictureField;
@@ -33,6 +44,41 @@ export default class PropertyCard extends LightningElement {
     typeField = TYPE_FIELD
     saleTypeField = SALE_TYPE_FIELD
     amenitiesField = AMENITIES_FIELD
+
+    connectedCallback() {
+        this.subscribeToMessageChannel();
+    }
+
+    disconnectedCallback() {
+        this.unsubscribeToMessageChannel();
+    }
+
+    /* Load context for LMS */
+    @wire(MessageContext)
+    messageContext;
+
+    /* Subscribe to LMS channel */
+    subscribeToMessageChannel() {
+        if (!this.subscription) {
+            this.subscription = subscribe(
+                this.messageContext,
+                PROPERTY_SELECTED_MESSAGE,
+                (message) => this.handleMessage(message),
+                { scope: APPLICATION_SCOPE }
+            );
+        }
+    }
+
+    /* Unsubscribe to LMS channel */
+    unsubscribeToMessageChannel() {
+        unsubscribe(this.subscription);
+        this.subscription = null;
+    }
+
+    /* Handler for message received by propertyTile */
+    handleMessage(message) {
+        this.recordId = message.propertyId
+    }
 
     handleRecordLoaded(event){
         const {records} = event.detail
