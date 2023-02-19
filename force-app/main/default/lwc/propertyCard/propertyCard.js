@@ -1,5 +1,6 @@
 import { LightningElement, wire } from 'lwc';
 import { getFieldValue } from 'lightning/uiRecordApi';
+import { NavigationMixin } from 'lightning/navigation';
 
 //Lightning Message Service
 import {
@@ -11,6 +12,7 @@ import {
 import PROPERTY_SELECTED_MESSAGE from '@salesforce/messageChannel/PropertySelected__c';
 
 // Real Estate Property Schema
+import REAL_ESTATE_OBJECT from '@salesforce/schema/Real_Estate_Property__c';
 import NAME_FIELD from '@salesforce/schema/Real_Estate_Property__c.Name';
 import PICTURE_URL_FIELD from '@salesforce/schema/Real_Estate_Property__c.Picture_URL__c';
 import BATHROOMS_FIELD from '@salesforce/schema/Real_Estate_Property__c.Bathrooms__c';
@@ -24,7 +26,7 @@ import AMENITIES_FIELD from '@salesforce/schema/Real_Estate_Property__c.Amenitie
 import LOCATION_FIELD from '@salesforce/schema/Real_Estate_Property__c.Location__c';
 import TYPE_FIELD from '@salesforce/schema/Real_Estate_Property__c.Type__c';
 import SALE_TYPE_FIELD from '@salesforce/schema/Real_Estate_Property__c.Sale_Type__c';
-export default class PropertyCard extends LightningElement {
+export default class PropertyCard extends NavigationMixin(LightningElement) {
     
     recordId
 
@@ -87,6 +89,17 @@ export default class PropertyCard extends LightningElement {
         this.nameField = getFieldValue(recordData, NAME_FIELD)
         this.pictureField = getFieldValue(recordData, PICTURE_URL_FIELD)
         
+    }
+
+    handleNavigateToRecord(){
+        this[NavigationMixin.Navigate]({
+            type:'standard__recordPage',
+            attributes:{
+                recordId:this.recordId,
+                objectApiName: REAL_ESTATE_OBJECT.objectApiName,
+                actionName:'view'
+            }
+        })
     }
     
 }

@@ -1,6 +1,7 @@
 <template>
     <lightning-card title={nameField} icon-name="custom:custom107">
         <template lwc:if={recordId}>
+            <lightning-button slot="actions" onclick={handleNavigateToRecord} icon-name="utility:expand_alt"></lightning-button>
             <div class="slds-m-horizontal_medium">
                 <img src={pictureField} alt="Propery picture"/>
                 <lightning-record-view-form onload={handleRecordLoaded} record-id={recordId} object-api-name="Real_Estate_Property__c" density="compact">
