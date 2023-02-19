@@ -1,0 +1,11 @@
+<template>
+    <div class="slds-theme_shade tile">
+        <img class="propertyImage slds-p-horizontal_x-small slds-p-top_x-small" src={realEstateProperty.Picture_URL__c} alt="Real Estate Property Image">
+        <p class="slds-text-title_bold">{realEstateProperty.Name}</p>
+        <div class="tileProperties">
+            <p>Type: {realEstateProperty.Type__c}</p>
+            <p>Sale Type: {realEstateProperty.Sale_Type__c}</p>
+            <p>Price: <lightning-formatted-number value={realEstateProperty.Price__c} format-style="currency" currency-code="USD" maximum-fraction-digits="0"></lightning-formatted-number></p>
+        </div>   
+    </div>
+</template>

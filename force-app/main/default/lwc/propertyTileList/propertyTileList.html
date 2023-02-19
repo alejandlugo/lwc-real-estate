@@ -1,5 +1,17 @@
 <template>
     <lightning-card title="Properties List" icon-name="standard:account">
+        <template lwc:if={realEstateProperties}>
+            <lightning-layout multiple-rows="true">
+                <template for:each={realEstateProperties} for:item="realEstateProperty">
+                    <lightning-layout-item key={realEstateProperty.Id} padding="around-small" size="12" small-device-size="6" medium-device-size="6" large-device-size="4">
+                        <c-property-tile  real-estate-property={realEstateProperty}></c-property-tile>
+                    </lightning-layout-item>
+                </template>
+            </lightning-layout>
+        </template>
+        <template lwc:else>
+            No data
+        </template>
         
     </lightning-card>
 </template>
