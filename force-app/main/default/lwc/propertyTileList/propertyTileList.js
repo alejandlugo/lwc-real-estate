@@ -16,7 +16,7 @@ export default class PropertyTileList extends LightningElement {
 
     subscription = null;
 
-    realEstateProperties;
+    realEstateProperties = [];
 
     filters = {}
 
