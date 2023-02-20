@@ -26,6 +26,7 @@ import AMENITIES_FIELD from '@salesforce/schema/Real_Estate_Property__c.Amenitie
 import LOCATION_FIELD from '@salesforce/schema/Real_Estate_Property__c.Location__c';
 import TYPE_FIELD from '@salesforce/schema/Real_Estate_Property__c.Type__c';
 import SALE_TYPE_FIELD from '@salesforce/schema/Real_Estate_Property__c.Sale_Type__c';
+
 export default class PropertyCard extends NavigationMixin(LightningElement) {
     
     recordId
@@ -34,6 +35,8 @@ export default class PropertyCard extends NavigationMixin(LightningElement) {
 
     nameField;
     pictureField;
+
+    mapMarkers
   
     bathroomsField = BATHROOMS_FIELD
     bedroomsField = BEDROOMS_FIELD
@@ -88,7 +91,22 @@ export default class PropertyCard extends NavigationMixin(LightningElement) {
 
         this.nameField = getFieldValue(recordData, NAME_FIELD)
         this.pictureField = getFieldValue(recordData, PICTURE_URL_FIELD)
-        
+
+        // Style the Location map to fit the available space
+        const style = document.createElement('style');
+        style.innerText = `.slds-map {
+        min-width: 0 !important;
+        }`;
+        this.template.querySelector('lightning-map').appendChild(style);
+
+        this.mapMarkers = [
+            {
+                location: {
+                    Latitude: recordData.fields.Location__Latitude__s.value,
+                    Longitude: recordData.fields.Location__Longitude__s.value,
+                },
+            },
+        ]
     }
 
     handleNavigateToRecord(){
