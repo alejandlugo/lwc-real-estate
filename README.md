@@ -1,18 +1,49 @@
-# Salesforce DX Project: Next Steps
+# Real Estate Hub
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+Real Estate Hub is a custom Salesforce Lightning Application used by real estate brokers to manage available properties in the Salesforce organization. All development is done through Lightning Web Components, Aura Components, and Apex.
 
-## How Do You Plan to Deploy Your Changes?
+The app consists of a custom Lightning App Page called Real Estate Explorer that is made up of a record grid, a filter, and a component card to view more details about the record. Communication between components is done through the Lightning Message Service.
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+In addition to the custom Lightning App Page, a record page component is provided to display similar records.
 
-## Configure Your Salesforce DX Project
+## Features
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+### Real Estate Explorer
 
-## Read All About It
+Custom Lightning App Page, comprises of Filter, Grid, Details.
 
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+#### Custom Layout
+
+A custom 2,7,3 three column layout has been used for Real Estate Explorer.
+
+![](https://raw.githubusercontent.com/alejandlugo/lwc-real-estate/main/resources/273%20Custom%20Layout.jpg)
+
+#### Search
+
+Search bar for filtering records.
+
+![](https://raw.githubusercontent.com/alejandlugo/lwc-real-estate/main/resources/Search%20bar.gif)
+
+#### Filter
+
+Aditional filters to refine the search for records.
+
+![](https://raw.githubusercontent.com/alejandlugo/lwc-real-estate/main/resources/Additional%20filters.gif)
+
+#### View Details
+
+Additional details can be seen when clicking on a property in the grid.
+
+![](https://github.com/alejandlugo/lwc-real-estate/blob/main/resources/View%20details.gif?raw=true)
+
+#### Location
+
+Map component in the additional details section to check the location of the property.
+
+![](https://github.com/alejandlugo/lwc-real-estate/blob/main/resources/Location.gif?raw=true)
+
+### Similar Records
+
+Fetch similar records in the property record page.
+
+![](https://github.com/alejandlugo/lwc-real-estate/blob/main/resources/fetch%20records.gif?raw=true)
