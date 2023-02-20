@@ -13,8 +13,8 @@ public with sharing class RealEstatePropertyController {
 
     /**
     * @description : Create a dynamic query with different values that front send to apex.
-    * @param getData Map<String,Object> : Map to send especific values for a dynamic query
-    * @return List<SObject> 
+    * @param filters Class(Filter) : Wrapper class to send especific values for a dynamic query
+    * @return List<Real_Estate_Property__c> 
     **/
     @AuraEnabled(cacheable=true)
     public static List<Real_Estate_Property__c> getRealEstateProperties(Filters filters){
@@ -63,6 +63,16 @@ public with sharing class RealEstatePropertyController {
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
-        
+    }
+
+    /**
+    * @description : Get similar Real Estate Property records based on the type.
+    * @param propertyId Id : Record Id of the property record in order to not fetch the same record again
+    * @param type String : parameter to check for similar records
+    * @return Real_Estate_Property__c[]
+    **/
+    @AuraEnabled(cacheable=true)
+    public static Real_Estate_Property__c[] getSimilarRealEstateProperties(Id propertyId, String type){
+        return [SELECT Id, Name, Price__c, Sale_Type__c, Picture_URL__c FROM Real_Estate_Property__c WHERE Type__c = :type AND Id != :propertyId LIMIT 6];
     }
 }
